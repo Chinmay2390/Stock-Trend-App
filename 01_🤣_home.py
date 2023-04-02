@@ -11,7 +11,7 @@ from sklearn.preprocessing import MinMaxScaler
 import streamlit as st
 
 
-st.title("Chinmay Stock Trend App")
+st.title("Stock Trend App")
 user_input = st.text_input("Enter Stock Ticker","AAPL")
 st.subheader("Data from 2010-01-01 to 2023-02-28")
 
