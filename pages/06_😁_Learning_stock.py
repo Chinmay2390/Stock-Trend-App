@@ -5,19 +5,26 @@ st.set_page_config(
     page_title="Machine Learning for Stock Market Prediction With Step-by-Step Implementation",
     page_icon="🕸",
 )
-st.title("Learn Stock")
+st.title("Learn Stock Market")
 
 # st.header("Introduction")
-st.subheader("Introduction")
+st.subheader("What is a Stock Market?")
 # st.subheader("")
-st.write("\tStock market prediction and analysis are some of the most difficult jobs to complete. There are numerous causes for this, including market volatility and a variety of other dependent and independent variables that influence the value of a certain stock in the market. These variables make it extremely difficult for any stock market expert to anticipate the rise and fall of the market with great precision. Considered among the most potent tree-based techniques, Random Forest can predict the stock process as it can also solvereg ression-based problems.\n\nThe introduction of Data Science, Machine Learning, and artificial intelligence\n and its strong algorithms, the most recent market research, and Stock price Prediction advancements have begun to include such approaches in analyzing stock market data.")
+st.write("\tA stock market is a marketplace where buyers and sellers meet to trade i.e. buy and sell shares of publicly listed companies. A stock market is fondly known as a share market, equity market or share bazaar.\n\nIn simple terms, if Ram wants to sell 10 shares of Reliance Industries at Rs 1990/ share, he will place a sell order on the stock exchange. The stock exchange will then find a buyer who wants to buy 10 shares of Reliance Industries at Rs 1990/ share. So, the stock market is a virtual market where the buyers and sellers meet to trade shares. ")
 img = Image.open("images/img1.png")
 st.image(img)
-st.write("In summary, Machine Learning Algorithms like regression, classifier, and support vector machine (SVM) are widely utilized by many organizations in stock market prediction. This article will walk through a simple implementation of analyzing and forecasting the stock prices of a Popular Worldwide Online Retail Store in Python using various Machine Learning Algorithms.")
-st.subheader("Learning Objectives")
+st.subheader("The two types of stock markets are:")
 st.markdown(
 """
-- In this session, we will learn about the best ways possible to predict stock prices using a long-short-term memory (LSTM) for time series forecasting.
-- We will learn everything about stock market prediction using LSTM.
+- Primary markets
+- Secondary markets
+"""
+)
+st.write("Primary market is a marketplace where companies raise capital for the very first time. The process of issuing shares to the general public for the first time is known as an Initial Public Offering, or IPO.\n\nOnce the shares are issued in the primary market, they are traded i.e. bought and sold in the secondary market via a stock exchange. ")
+st.subheader("Stock exchanges are further divided as:")
+st.markdown(
+"""
+- National stock exchanges 
+- Regional stock exchanges. 
 """
 )
