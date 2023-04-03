@@ -1,8 +1,12 @@
-import streamlit as st
+#RSI PENDING
 
+import datetime
+import streamlit as st
+import cufflinks as cf
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from datetime import date
 plt.style.use('fivethirtyeight')
 
 from pandas_datareader import data as pdr
@@ -21,21 +25,26 @@ st.title("Indicators")
 
 user_input = st.text_input("Enter Stock Ticker","AAPL")
 
-# yf.pdr_override()
+# if(st.button("Submit")):
+
+start_date = st.date_input("Start date", datetime.date(2019, 1, 1))
+end_date = st.date_input("End date", date.today())
+yf.pdr_override()
+tickerData = yf.Ticker(user_input)
 # start_date = "2010-01-01"
 # end_date = "2023-02-28"
-# df = yf.download(user_input, start_date, end_date)
-
+df = yf.download(user_input, start_date, end_date)
+tickerDf = tickerData.history(period='1d', start=start_date, end=end_date) 
 # st.write(df.describe())
 
-df = pd.read_csv("NFLX.csv")
-st.write(df.describe())
+# df = pd.read_csv("NFLX.csv")
+# st.write(df.describe())
 
 
-indicator = st.selectbox("Indicators: ",['Simple Moving Average', 'RSI', 'Exponential Moving Average','Moving Average Convergance/Divergance'])
-
+indicator = st.multiselect("Select Indicators: ",['Bollinger Bands','Simple Moving Average', 'RSI', 'Exponential Moving Average','Moving Average Convergance/Divergance'])
+df = df.reset_index()
 df = df.set_index(pd.DatetimeIndex(df['Date'].values))
-st.write(df.head())   
+# st.write(df.head())   
 
 
 #creating the sma
@@ -61,24 +70,30 @@ def MACD(data, period_long=26, period_short=12, period_signal= 9, column='Close'
     return data
 
 
+#Draw Bollinger Bands
+def BollingerBands():
+    st.header('**Bollinger Bands**')
+    qf=cf.QuantFig(tickerDf,title='First Quant Figure',legend='top',name='GS')
+    qf.add_bollinger_bands()
+    fig = qf.iplot(asFigure=True)
+    st.plotly_chart(fig)
 
 #Create a function to compute the Relative Strength Index (RSI) 
-# def RSI (data, period=14, column='Close'): 
-
-#     delta=data[column].diff(1)
-#     delta=delta[1:]
-#     up=delta.copy()
-#     down=delta.copy()
-#     up[up <0] = 0
-#     down [down>0] = 0
-#     data['up'] = up
-#     data['down'] = down
-#     AVG_Gain= smacalci (data, period, column = 'up')
-#     AVG_Loss = abs (smacalci(data, period, column = 'down'))
-#     RS = AVG_Gain / AVG_Loss
-#     RSI = 100.0 (100.0/(1.0+ RS))
-#     data['RSI'] = RSI
-#     return data
+def RSI (data, period=14, column='Close'): 
+    delta=data[column].diff(1)
+    delta=delta[1:]
+    up=delta.copy()
+    down=delta.copy()
+    up[up <0] = 0
+    down [down>0] = 0
+    data['up'] = up
+    data['down'] = down
+    AVG_Gain= smacalci (data, period, column = 'up')
+    AVG_Loss = abs (smacalci(data, period, column = 'down'))
+    RS = AVG_Gain / AVG_Loss
+    RSI = 100.0 (100.0/(1.0+ RS))
+    data['RSI'] = RSI
+    return data
 
 
 #calling functions
@@ -86,50 +101,58 @@ MACD(df)
 #RSI(df)
 df['SMA'] = smacalci(df)
 df['EMA'] = emacalci(df)
+if st.button("Submit"):
+    for i in indicator:
+        
+        if i == 'Moving Average Convergance/Divergance':
+            title = "MACD for "+tickerData.info['longName']
+            column_list = ['MACD', 'Signal_Line'] 
+            df1 = df[column_list]
+            figure = plt.figure(figsize=(12.2, 6.4)) 
+            plt.plot(df1['MACD'],'r')
+            plt.plot(df1['Signal_Line'],'g')
+            plt.title(title)
+            plt.ylabel('USD Price')
+            plt.xlabel('Date')
+            st.pyplot(figure)
 
-if indicator == 'Moving Average Convergance/Divergance':
-   
-    column_list = ['MACD', 'Signal_Line'] 
-    df1 = df[column_list]
-    figure = plt.figure(figsize=(12.2, 6.4)) 
-    plt.plot(df1['MACD'],'r')
-    plt.plot(df1['Signal_Line'],'g')
-    plt.title('MACD for NETFLIX (NFLX)')
-    plt.ylabel('USD Price')
-    plt.xlabel('Date')
-    st.pyplot(figure)
+        elif i == 'Simple Moving Average':
+            title = "Simple Moving Average for "+tickerData.info['longName']
+            column_list = ['SMA', 'Close'] 
+            figure = plt.figure(figsize=(12.2, 6.4)) 
+            plt.plot(df['SMA'],'r') 
+            plt.plot(df['Close'],'g')
+            plt.title(title )
+            plt.ylabel('USD Price')
+            plt.xlabel('Date')
+            st.pyplot(figure)
 
-elif indicator == 'Simple Moving Average':
-    column_list = ['SMA', 'Close'] 
-    figure = plt.figure(figsize=(12.2, 6.4)) 
-    plt.plot(df['SMA'],'r') 
-    plt.plot(df['Close'],'g')
-    plt.title('SMA for NETFLIX (NFLX)')
-    plt.ylabel('USD Price')
-    plt.xlabel('Date')
-    st.pyplot(figure)
+        elif i == 'Exponential Moving Average':
+            title = "Exponential Moving Average for "+tickerData.info['longName']
+            column_list = ['EMA', 'Close'] 
+            figure = plt.figure(figsize=(12.2, 6.4)) 
+            plt.plot(df['EMA'],'r') 
+            plt.plot(df['Close'],'g')
+            plt.title(title)
+            plt.ylabel('USD Price')
+            plt.xlabel('Date')
+            st.pyplot(figure)
 
-elif indicator == 'Exponential Moving Average':
-    column_list = ['EMA', 'Close'] 
-    figure = plt.figure(figsize=(12.2, 6.4)) 
-    plt.plot(df['EMA'],'r') 
-    plt.plot(df['Close'],'g')
-    plt.title('EMA for NETFLIX (NFLX)')
-    plt.ylabel('USD Price')
-    plt.xlabel('Date')
-    st.pyplot(figure)
+        elif i == 'RSI':
+            title = "RSI "+tickerData.info['longName']
+            figure = column_list = ['RSI'] 
+            figure = plt.figure(figsize=(12.2, 6.4))
+            plt.plot(df['RSI'],'r')
+            plt.title(title)
+            plt.ylabel('USD Price')
+            plt.xlabel('Date')
+            st.pyplot(figure)
 
-elif indicator == 'RSI':
-    figure = column_list = ['RSI'] 
-    figure = plt.figure(figsize=(12.2, 6.4))
-    plt.plot(df['RSI'],'r')
-    plt.title('RSI for NETFLIX (NFLX)')
-    plt.ylabel('USD Price')
-    plt.xlabel('Date')
-    st.pyplot(figure)
+        elif i == 'Bollinger Bands':
+            BollingerBands()
 
-else:
-    pass
+        else:
+            pass
 
 
-#st.write(st.session_state['my_input'])
+# st.write(st.session_state['my_input'])
