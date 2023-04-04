@@ -11,10 +11,6 @@ st.set_page_config(
 
 #st.write(st.session_state['my_input'])
 
-<<<<<<< HEAD:pages/02_😍_SentimentAnalysis.py
-
-# akfja;ld
-=======
 background_color= "#808080"
 ticker_info = st.container()
 df = pd.read_csv('file2.csv')
@@ -34,4 +30,3 @@ with ticker_info:
                       paper_bgcolor=background_color)
 
     st.write(fig)
->>>>>>> chinmay-local:pages/02_😍_product.py
