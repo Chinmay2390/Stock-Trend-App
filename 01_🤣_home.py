@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from pandas_datareader import data as pdr
 import yfinance as yf
 from keras.models import load_model
-import takeSP500 as sp
+# import takeSP500 as sp
 from sklearn.preprocessing import MinMaxScaler
 
 
@@ -28,7 +28,7 @@ if(st.button("Submit")):
 
     df = yf.download(user_input, start_date, end_date)
     # st.table(df.head())
-    st.table(sp.makeTickerDF())
+    # st.table(sp.makeTickerDF())
     st.write(df.describe())
 
     st.subheader("Closing Price vs Time Chart")

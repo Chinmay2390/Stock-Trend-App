@@ -18,7 +18,7 @@ for row in table.findAll('tr')[1:]:
 
 
 tickers = [s.replace('\n', '') for s in tickers]
-print(tickers)
+
 
 # ticker = input("Enter the stock ticker\n")
 ticker = 'AAPL'
@@ -41,6 +41,6 @@ def makeTickerDF():
 
 
 newdf = makeTickerDF()
-newdf["Full Name"] = ticker_name
+newdf["Full_Name"] = ticker_name
 newdf.to_csv('file2.csv')
-print(newdf.head())
+# print(newdf.head())
