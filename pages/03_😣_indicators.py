@@ -91,7 +91,7 @@ def RSI (data, period=14, column='Close'):
     AVG_Gain= smacalci (data, period, column = 'up')
     AVG_Loss = abs (smacalci(data, period, column = 'down'))
     RS = AVG_Gain / AVG_Loss
-    RSI = 100.0 (100.0/(1.0+ RS))
+    RSI = 100.0 *(100.0/(1.0+ RS))
     data['RSI'] = RSI
     return data
 
@@ -139,14 +139,31 @@ if st.button("Submit"):
             st.pyplot(figure)
 
         elif i == 'RSI':
-            title = "RSI "+tickerData.info['longName']
-            figure = column_list = ['RSI'] 
-            figure = plt.figure(figsize=(12.2, 6.4))
-            plt.plot(df['RSI'],'r')
+            # title = "RSI "+tickerData.info['longName']
+            # figure = column_list = ['RSI'] 
+            # figure = plt.figure(figsize=(12.2, 6.4))
+            # plt.plot(df['RSI'],'r')
+            # plt.title(title)
+            # plt.ylabel('USD Price')
+            # plt.xlabel('Date')
+            # st.pyplot(figure)
+        # elif i == 'RSI':
+            title = "RSI for "+tickerData.info['longName']
+            df_rsi = RSI(df)
+            column_list = ['RSI'] 
+            figure = plt.figure(figsize=(12.2, 4.5)) 
+            plt.plot(df_rsi[column_list], 'g', label = 'RSI') 
+            plt.axhline(0, linestyle='--', alpha=0.1, color='gray')
+            plt.axhline(20, linestyle='--', alpha=0.5, color='orange')
+            plt.axhline(30, linestyle='--', alpha=0.5, color='yellow')
+            plt.axhline(70, linestyle='--', alpha=0.5, color='yellow')
+            plt.axhline(80, linestyle='--', alpha=0.5, color='orange')
+            plt.axhline(100, linestyle='--', alpha=0.1, color='gray')
             plt.title(title)
-            plt.ylabel('USD Price')
-            plt.xlabel('Date')
+            plt.ylabel('RSI Values')
+            plt.legend(df_rsi[column_list])
             st.pyplot(figure)
+
 
         elif i == 'Bollinger Bands':
             BollingerBands()
