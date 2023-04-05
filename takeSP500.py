@@ -18,7 +18,7 @@ for row in table.findAll('tr')[1:]:
 
 
 tickers = [s.replace('\n', '') for s in tickers]
-print(tickers)
+
 
 # ticker = input("Enter the stock ticker\n")
 ticker = 'AAPL'
