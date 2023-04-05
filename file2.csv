@@ -1,11 +1,11 @@
 ,Ticker,Full_Name
 0,MMM,3M Company
-1,AOS,
-2,ABT,
+1,AOS,A. O. Smith Corporation
+2,ABT,Abbott Laboratories
 3,ABBV,AbbVie Inc.
 4,ACN,Accenture plc
 5,ATVI,"Activision Blizzard, Inc."
-6,ADM,
+6,ADM,Archer-Daniels-Midland Company
 7,ADBE,Adobe Inc.
 8,ADP,"Automatic Data Processing, Inc."
 9,AAP,"Advance Auto Parts, Inc."
@@ -13,19 +13,19 @@
 11,AFL,Aflac Incorporated
 12,A,"Agilent Technologies, Inc."
 13,APD,"Air Products and Chemicals, Inc."
-14,AKAM,
-15,ALK,
+14,AKAM,"Akamai Technologies, Inc."
+15,ALK,"Alaska Air Group, Inc."
 16,ALB,Albemarle Corporation
 17,ARE,"Alexandria Real Estate Equities, Inc."
 18,ALGN,"Align Technology, Inc."
 19,ALLE,Allegion plc
 20,LNT,Alliant Energy Corporation
-21,ALL,
+21,ALL,The Allstate Corporation
 22,GOOGL,Alphabet Inc.
 23,GOOG,Alphabet Inc.
 24,MO,"Altria Group, Inc."
 25,AMZN,"Amazon.com, Inc."
-26,AMCR,
+26,AMCR,Amcor plc
 27,AMD,"Advanced Micro Devices, Inc."
 28,AEE,Ameren Corporation
 29,AAL,American Airlines Group Inc.
@@ -40,7 +40,7 @@
 38,AMGN,Amgen Inc.
 39,APH,Amphenol Corporation
 40,ADI,"Analog Devices, Inc."
-41,ANSS,
+41,ANSS,"ANSYS, Inc."
 42,AON,Aon plc
 43,APA,APA Corporation
 44,AAPL,Apple Inc.
@@ -60,7 +60,7 @@
 58,BALL,Ball Corporation
 59,BAC,Bank of America Corporation
 60,BBWI,"Bath & Body Works, Inc."
-61,BAX,
+61,BAX,Baxter International Inc.
 62,BDX,"Becton, Dickinson and Company"
 63,WRB,W. R. Berkley Corporation
 64,BRK.B,
@@ -88,12 +88,12 @@
 86,CPB,Campbell Soup Company
 87,COF,Capital One Financial Corporation
 88,CAH,"Cardinal Health, Inc."
-89,KMX,
+89,KMX,"CarMax, Inc."
 90,CCL,Carnival Corporation & plc
 91,CARR,Carrier Global Corporation
 92,CTLT,"Catalent, Inc."
 93,CAT,Caterpillar Inc.
-94,CBOE,
+94,CBOE,"Cboe Global Markets, Inc."
 95,CBRE,"CBRE Group, Inc."
 96,CDW,CDW Corporation
 97,CE,Celanese Corporation
@@ -102,15 +102,15 @@
 100,CDAY,Ceridian HCM Holding Inc.
 101,CF,"CF Industries Holdings, Inc."
 102,CRL,"Charles River Laboratories International, Inc."
-103,SCHW,
+103,SCHW,The Charles Schwab Corporation
 104,CHTR,"Charter Communications, Inc."
 105,CVX,Chevron Corporation
-106,CMG,
+106,CMG,"Chipotle Mexican Grill, Inc."
 107,CB,Chubb Limited
 108,CHD,"Church & Dwight Co., Inc."
 109,CI,The Cigna Group
 110,CINF,Cincinnati Financial Corporation
-111,CTAS,
+111,CTAS,Cintas Corporation
 112,CSCO,"Cisco Systems, Inc."
 113,C,Citigroup Inc.
 114,CFG,"Citizens Financial Group, Inc."
@@ -136,7 +136,7 @@
 134,CTRA,Coterra Energy Inc.
 135,CCI,Crown Castle Inc.
 136,CSX,CSX Corporation
-137,CMI,
+137,CMI,Cummins Inc.
 138,CVS,CVS Health Corporation
 139,DHI,"D.R. Horton, Inc."
 140,DHR,Danaher Corporation
@@ -201,10 +201,10 @@
 199,FRC,First Republic Bank
 200,FSLR,"First Solar, Inc."
 201,FE,FirstEnergy Corp.
-202,FIS,
+202,FIS,"Fidelity National Information Services, Inc."
 203,FISV,"Fiserv, Inc."
 204,FLT,"FLEETCOR Technologies, Inc."
-205,FMC,
+205,FMC,FMC Corporation
 206,F,Ford Motor Company
 207,FTNT,"Fortinet, Inc."
 208,FTV,Fortive Corporation
@@ -287,7 +287,7 @@
 285,LRCX,Lam Research Corporation
 286,LW,"Lamb Weston Holdings, Inc."
 287,LVS,Las Vegas Sands Corp.
-288,LDOS,
+288,LDOS,"Leidos Holdings, Inc."
 289,LEN,Lennar Corporation
 290,LNC,Lincoln National Corporation
 291,LIN,Linde plc
@@ -296,7 +296,7 @@
 294,LMT,Lockheed Martin Corporation
 295,L,Loews Corporation
 296,LOW,"Lowe's Companies, Inc."
-297,LYB,
+297,LYB,LyondellBasell Industries N.V.
 298,MTB,M&T Bank Corporation
 299,MRO,Marathon Oil Corporation
 300,MPC,Marathon Petroleum Corporation
@@ -323,17 +323,17 @@
 321,MRNA,"Moderna, Inc."
 322,MHK,"Mohawk Industries, Inc."
 323,MOH,"Molina Healthcare, Inc."
-324,TAP,
+324,TAP,Molson Coors Beverage Company
 325,MDLZ,"Mondelez International, Inc."
 326,MPWR,"Monolithic Power Systems, Inc."
-327,MNST,
+327,MNST,Monster Beverage Corporation
 328,MCO,Moody's Corporation
 329,MS,Morgan Stanley
 330,MOS,The Mosaic Company
 331,MSI,"Motorola Solutions, Inc."
 332,MSCI,MSCI Inc.
 333,NDAQ,"Nasdaq, Inc."
-334,NTAP,
+334,NTAP,"NetApp, Inc."
 335,NFLX,"Netflix, Inc."
 336,NWL,Newell Brands Inc.
 337,NEM,Newmont Corporation
@@ -377,7 +377,7 @@
 375,PSX,Phillips 66
 376,PNW,Pinnacle West Capital Corporation
 377,PXD,Pioneer Natural Resources Company
-378,PNC,
+378,PNC,"The PNC Financial Services Group, Inc."
 379,POOL,Pool Corporation
 380,PPG,"PPG Industries, Inc."
 381,PPL,PPL Corporation
@@ -408,12 +408,12 @@
 406,ROL,"Rollins, Inc."
 407,ROP,"Roper Technologies, Inc."
 408,ROST,"Ross Stores, Inc."
-409,RCL,
+409,RCL,Royal Caribbean Cruises Ltd.
 410,SPGI,S&P Global Inc.
 411,CRM,"Salesforce, Inc."
 412,SBAC,SBA Communications Corporation
 413,SLB,Schlumberger Limited
-414,STX,
+414,STX,Seagate Technology Holdings plc
 415,SEE,Sealed Air Corporation
 416,SRE,Sempra Energy
 417,NOW,"ServiceNow, Inc."
@@ -440,7 +440,7 @@
 438,TPR,"Tapestry, Inc."
 439,TRGP,Targa Resources Corp.
 440,TGT,Target Corporation
-441,TEL,
+441,TEL,TE Connectivity Ltd.
 442,TDY,Teledyne Technologies Incorporated
 443,TFX,Teleflex Incorporated
 444,TER,"Teradyne, Inc."
