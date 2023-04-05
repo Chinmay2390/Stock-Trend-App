@@ -41,6 +41,6 @@ def makeTickerDF():
 
 
 newdf = makeTickerDF()
-newdf["Full Name"] = ticker_name
+newdf["Full_Name"] = ticker_name
 newdf.to_csv('file2.csv')
-print(newdf.head())
+# print(newdf.head())
