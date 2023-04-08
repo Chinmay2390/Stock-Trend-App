@@ -148,7 +148,8 @@ if st.button("Submit"):
             # plt.xlabel('Date')
             # st.pyplot(figure)
         # elif i == 'RSI':
-            title = "RSI for "+tickerData.info['longName']
+            # title = "RSI for "+ tickerData.info['longName']
+            title = "RSI for " + str(tickerData.info['longName'])
             df_rsi = RSI(df)
             column_list = ['RSI'] 
             figure = plt.figure(figsize=(12.2, 4.5)) 
