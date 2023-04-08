@@ -6,8 +6,8 @@ st.set_page_config(
     page_title="Stock Price Prediction App",
     page_icon="🕸",
 )
-st.title("Contact Us")
-
+# st.title("Contact Us")
+st.title("Active Stocks")
 #st.write(st.session_state['my_input'])
 
 
@@ -65,7 +65,50 @@ import pandas as pd
 import yfinance as yf
 import json
 
-# Download stock data
+# # Download stock data
+# df1 = yf.download(tickers='AAPL', period='1d', interval='1d')
+# df2 = yf.download(tickers='AMZN', period='1d', interval='1d')
+# df3 = yf.download(tickers='GOOGL', period='1d', interval='1d')
+# df4 = yf.download(tickers='UBER', period='1d', interval='1d')
+# df5 = yf.download(tickers='TSLA', period='1d', interval='1d')
+# df6 = yf.download(tickers='TWTR', period='1d', interval='1d')
+
+# # Add ticker column to each DataFrame
+# df1.insert(0, "Ticker", "AAPL")
+# df2.insert(0, "Ticker", "AMZN")
+# df3.insert(0, "Ticker", "GOOGL")
+# df4.insert(0, "Ticker", "UBER")
+# df5.insert(0, "Ticker", "TSLA")
+# df6.insert(0, "Ticker", "TWTR")
+
+# # Combine DataFrames and format
+# df = pd.concat([df1, df2, df3, df4, df5, df6], axis=0)
+# df.reset_index(level=0, inplace=True)
+# df.columns = ['Date', 'Ticker', 'Open', 'High', 'Low', 'Close', 'Adj_Close', 'Volume']
+# convert_dict = {'Date': object}
+# df = df.astype(convert_dict)
+# df.drop('Date', axis=1, inplace=True)
+
+# # Convert DataFrame to JSON and load as list of dictionaries
+# json_records = df.reset_index().to_json(orient ='records')
+# recent_stocks = json.loads(json_records)
+
+# # Assume 'df' is the DataFrame you want to display as a table
+
+# # Define the CSS style for the header row
+# header_style = {'selector': 'th',
+#                 'props': [('background-color', 'orange'), 
+#                           ('color', 'white'), 
+#                           ('font-weight', 'bold'), 
+#                           ('padding', '10px')]}
+# df.style.apply(lambda _: [header_style]*len(df.columns))
+
+# # Display the table with the header row style applied
+# st.write(df.style.apply(lambda _: header_style, axis=1))
+# # Display table in Streamlit app
+# st.table(df)
+
+
 df1 = yf.download(tickers='AAPL', period='1d', interval='1d')
 df2 = yf.download(tickers='AMZN', period='1d', interval='1d')
 df3 = yf.download(tickers='GOOGL', period='1d', interval='1d')
@@ -73,7 +116,6 @@ df4 = yf.download(tickers='UBER', period='1d', interval='1d')
 df5 = yf.download(tickers='TSLA', period='1d', interval='1d')
 df6 = yf.download(tickers='TWTR', period='1d', interval='1d')
 
-# Add ticker column to each DataFrame
 df1.insert(0, "Ticker", "AAPL")
 df2.insert(0, "Ticker", "AMZN")
 df3.insert(0, "Ticker", "GOOGL")
@@ -81,7 +123,6 @@ df4.insert(0, "Ticker", "UBER")
 df5.insert(0, "Ticker", "TSLA")
 df6.insert(0, "Ticker", "TWTR")
 
-# Combine DataFrames and format
 df = pd.concat([df1, df2, df3, df4, df5, df6], axis=0)
 df.reset_index(level=0, inplace=True)
 df.columns = ['Date', 'Ticker', 'Open', 'High', 'Low', 'Close', 'Adj_Close', 'Volume']
@@ -89,24 +130,16 @@ convert_dict = {'Date': object}
 df = df.astype(convert_dict)
 df.drop('Date', axis=1, inplace=True)
 
-# Convert DataFrame to JSON and load as list of dictionaries
-json_records = df.reset_index().to_json(orient ='records')
+json_records = df.reset_index().to_json(orient='records')
+recent_stocks = []
 recent_stocks = json.loads(json_records)
 
-# Assume 'df' is the DataFrame you want to display as a table
+# Streamlit app
+def index():
+    st.title("Recent Stocks Data")
+    st.write(pd.DataFrame(recent_stocks))
 
-# Define the CSS style for the header row
-header_style = {'selector': 'th',
-                'props': [('background-color', 'orange'), 
-                          ('color', 'white'), 
-                          ('font-weight', 'bold'), 
-                          ('padding', '10px')]}
-df.style.apply(lambda _: [header_style]*len(df.columns))
-
-# Display the table with the header row style applied
-st.write(df.style.apply(lambda _: header_style, axis=1))
-# Display table in Streamlit app
-st.table(df)
-
-
-
+if __name__ == '__main__':
+    index()
+    
+#st.write(st.session_state['my_input'])
