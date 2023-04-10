@@ -138,55 +138,75 @@ def predict(ticker_value, number_of_days):
     st.plotly_chart(pred_fig)
 
     ####################################################################
-    ticker = pd.read_csv('data/Tickers.csv')
-    
-    # Read the CSV file into a pandas DataFrame
-    to_search = ticker_value
-    ticker.columns = ['Symbol', 'Name', 'Last_Sale', 'Net_Change', 'Percent_Change', 'Market_Cap',
-                    'Country', 'IPO_Year', 'Volume', 'Sector', 'Industry']
-    for i in range(0,ticker.shape[0]):
-        if ticker.Symbol[i] == to_search:
-            Symbol = ticker.Symbol[i]
-            Name = ticker.Name[i]
-            Last_Sale = ticker.Last_Sale[i]
-            Net_Change = ticker.Net_Change[i]
-            Percent_Change = ticker.Percent_Change[i]
-            Market_Cap = ticker.Market_Cap[i]
-            Country = ticker.Country[i]
-            IPO_Year = ticker.IPO_Year[i]
-            Volume = ticker.Volume[i]
-            Sector = ticker.Sector[i]
-            Industry = ticker.Industry[i]
-            break
+    def main():
+    # Load the data
+        ticker = pd.read_csv('data/Tickers.csv')
+
+        # Set column names
+        ticker.columns = ['Symbol', 'Name', 'Last_Sale', 'Net_Change', 'Percent_Change', 'Market_Cap',
+                        'Country', 'IPO_Year', 'Volume', 'Sector', 'Industry']
+
+        # Add a title to the app
+        st.title("Ticker Search App")
+
+        # Create a text input for the user to enter a ticker symbol
+        to_search = st.text_input("Enter a ticker symbol:")
+
+        # Loop through the rows of the DataFrame and find the matching ticker symbol
+        found_ticker = None
+        for i in range(ticker.shape[0]):
+            if ticker.Symbol[i] == to_search:
+                found_ticker = ticker.iloc[i]
+                break
+
+        # If a matching ticker is found, display its details
+        if found_ticker is not None:
+            st.write(f"Symbol: {found_ticker.Symbol}")
+            st.write(f"Name: {found_ticker.Name}")
+            st.write(f"Last Sale: {found_ticker.Last_Sale}")
+            st.write(f"Net Change: {found_ticker.Net_Change}")
+            st.write(f"Percent Change: {found_ticker.Percent_Change}")
+            st.write(f"Market Cap: {found_ticker.Market_Cap}")
+            st.write(f"Country: {found_ticker.Country}")
+            st.write(f"IPO Year: {found_ticker.IPO_Year}")
+            st.write(f"Volume: {found_ticker.Volume}")
+            st.write(f"Sector: {found_ticker.Sector}")
+            st.write(f"Industry: {found_ticker.Industry}")
+        # Otherwise, display a message saying that the ticker was not found
+        else:
+            st.write("Ticker symbol not found.")
+
+    if __name__ == "__main__":
+        main()
 
     ###########################################################################
-    def my_view(request):
-        data = {
-            'plot_div': plot_div,
-            'confidence': confidence,
-            'forecast': forecast,
-            'ticker_value': ticker_value,
-            'number_of_days': number_of_days,
-            'plot_div_pred': plot_div,
-            'Symbol': Symbol,
-            'Name': Name,
-            'Last_Sale': Last_Sale,
-            'Net_Change': Net_Change,
-            'Percent_Change': Percent_Change,
-            'Market_Cap': Market_Cap,
-            'Country': Country,
-            'IPO_Year': IPO_Year,
-            'Volume': Volume,
-            'Sector': Sector,
-            'Industry': Industry,
-        }
-        return data
-################################################################
-    data = my_view(None)
+#     def my_view(request):
+#         data = {
+#             'plot_div': plot_div,
+#             'confidence': confidence,
+#             'forecast': forecast,
+#             'ticker_value': ticker_value,
+#             'number_of_days': number_of_days,
+#             'plot_div_pred': plot_div,
+#             'Symbol': Symbol,
+#             'Name': Name,
+#             'Last_Sale': Last_Sale,
+#             'Net_Change': Net_Change,
+#             'Percent_Change': Percent_Change,
+#             'Market_Cap': Market_Cap,
+#             'Country': Country,
+#             'IPO_Year': IPO_Year,
+#             'Volume': Volume,
+#             'Sector': Sector,
+#             'Industry': Industry,
+#         }
+#         return data
+# ################################################################
+#     data = my_view(None)
 
-    # Display the data in Streamlit
-    # st.write(data['forecast'])
-    # st.write(data['confidence'])
+#     # Display the data in Streamlit
+#     st.write(data['forecast'])
+#     st.write(data['confidence'])
 #############################################################
 if st.button('Submit'):
     predict(ticker_value,number_of_days)
